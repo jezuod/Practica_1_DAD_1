@@ -1,3 +1,5 @@
+package edu.ucam.principal;
+
 public class User {
     //SISTEMA DE USUARIO
     private String user_id; // ID USUARIO
