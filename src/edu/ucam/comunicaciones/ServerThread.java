@@ -19,7 +19,7 @@ public class ServerThread extends Thread{
             String lineaLeida = "";
 
             while(!(lineaLeida=br.readLine()).equalsIgnoreCase("QUIT")) {
-                pw.println(lineaLeida);
+                pw.println("Server :"+lineaLeida);
                 pw.flush();
             }
 

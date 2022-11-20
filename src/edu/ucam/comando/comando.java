@@ -1,19 +1,19 @@
 package edu.ucam.comando;
 
 public abstract class comando {
-    private int number; // ej : <number>
-    private String instruccion; // ej : USER/PASS/EXIT/ADDCLUB
+    private String number;
+    private String informacion_adicional;
 
-    public comando(int number, String instruccion) {
-        this.number = number;
-        this.instruccion = instruccion;
-    }
-
-    public int getNumber() {
+    public String getNumber() {
         return number;
     }
 
-    public String getInstruccion() {
-        return instruccion;
+    public String getInformacion_adicional() {
+        return informacion_adicional;
+    }
+
+    public comando(String number, String informacion_adicional) {
+        this.number = number;
+        this.informacion_adicional = informacion_adicional;
     }
 }

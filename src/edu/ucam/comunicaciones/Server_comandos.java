@@ -4,11 +4,10 @@ import java.io.*;
 import java.net.*;
 
 public class Server_comandos {
+
     public void ejecutar() {
         try {
             ServerSocket serverSocket = new ServerSocket(5000);
-
-
 
             while(true) {
                 System.out.println("Esperando conexión...");
@@ -28,4 +27,10 @@ public class Server_comandos {
             e.printStackTrace();
         }
     }
+
+    public static void main(String[] args) {
+        (new Server_comandos()).ejecutar();
+
+    }
+
 }

@@ -1,6 +1,11 @@
 package edu.ucam.principal;
 
+import edu.ucam.comunicaciones.Client;
+
+import java.util.ArrayList;
+
 public class User {
+    private static ArrayList<User> users=new ArrayList<User>(); //tener acceso a todos los usuarios
     //SISTEMA DE USUARIO
     private String user_id; // ID USUARIO
     private String user_password; // CONTRASEÑA
@@ -21,11 +26,15 @@ public class User {
         this.user_id = user_id;
         this.user_password = user_password;
         this.admin=false;
+        users.add(this);
     }
 
     public User(String user_id, String user_password, Boolean admin) {
         this.user_id = user_id;
         this.user_password = user_password;
         this.admin = admin;
+        users.add(this);
     }
+
+
 }
