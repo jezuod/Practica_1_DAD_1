@@ -26,15 +26,11 @@ public class Client {
 
             Scanner keyboard= new Scanner(System.in);
             String line="";
-            String palabras[];
-            while(!(line= keyboard.nextLine()).equalsIgnoreCase("SALIR")){
-                palabras=line.split("\\W+");/*
-                The \\W+ will match all non-alphabetic characters occurring one or more times. So there is no need to replace
 
-                */
-                comando_cliente comand=new comando_cliente(Integer.toString(num),palabras[1],palabras[0]);
-                pw.println(comand.getNumber()+" "+comand.getComando()+" "+ comand.getInformacion_adicional());
-                num++;
+            while(!(line= Integer.toString(num)+" "+ keyboard.nextLine()).equalsIgnoreCase("SALIR")){
+
+                pw.println(line);
+                num++; //sumanos el num en el cliente como se describe en el protocolo
                 pw.flush();
 
                 System.out.println("\t"+ br.readLine());

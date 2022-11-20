@@ -1,5 +1,7 @@
 package edu.ucam.comunicaciones;
 
+import edu.ucam.comando.comando_cliente;
+
 import java.io.*;
 import java.net.Socket;
 
@@ -17,9 +19,14 @@ public class ServerThread extends Thread{
 
 
             String lineaLeida = "";
-
+            String palabras[];
             while(!(lineaLeida=br.readLine()).equalsIgnoreCase("QUIT")) {
-                pw.println("Server :"+lineaLeida);
+                palabras=lineaLeida.split("\\W+");/*
+                The \\W+ will match all non-alphabetic characters occurring one or more times. So there is no need to replace
+
+                */
+                comando_cliente comand=new comando_cliente(palabras[0],palabras[2],palabras[1]);
+                pw.println("Server :"+comand.getNumber()+" "+comand.getComando()+" "+ comand.getInformacion_adicional());
                 pw.flush();
             }
 
