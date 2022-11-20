@@ -21,6 +21,14 @@ public class comando_servidor extends comando{
             this.tipo_respuesta = Tipos_respuesta.FAILED;
         }
         this.cod_respuesta = cod_respuesta;
+
     }
 
+    public Tipos_respuesta getTipo_respuesta() {
+        return tipo_respuesta;
+    }
+
+    public int getCod_respuesta() {
+        return cod_respuesta;
+    }
 }

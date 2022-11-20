@@ -1,6 +1,7 @@
 package edu.ucam.comunicaciones;
 
 import edu.ucam.comando.comando_cliente;
+import edu.ucam.comando.comando_servidor;
 
 import java.io.*;
 import java.net.Socket;
@@ -25,9 +26,15 @@ public class ServerThread extends Thread{
                 The \\W+ will match all non-alphabetic characters occurring one or more times. So there is no need to replace
 
                 */
-                comando_cliente comand=new comando_cliente(palabras[0],palabras[2],palabras[1]);
-                pw.println("Server :"+comand.getNumber()+" "+comand.getComando()+" "+ comand.getInformacion_adicional());
+                comando_cliente comand_cliente=new comando_cliente(palabras[0],palabras[2],palabras[1]);
+                comand_cliente.ejecutar();
+                comando_servidor c_server=comand_cliente.getComand_server();
+                //comando_servidor comand_server;
+                pw.println("SERVER : "+c_server.getTipo_respuesta()+" "+c_server.getNumber()+" "+c_server.getCod_respuesta()+" "+c_server.getInformacion_adicional());
+                //pw.println("Server :"+comand_cliente.getNumber()+" "+comand_cliente.getComando()+" "+ comand_cliente.getInformacion_adicional());
                 pw.flush();
+
+
             }
 
             System.out.println("Finalizado");
