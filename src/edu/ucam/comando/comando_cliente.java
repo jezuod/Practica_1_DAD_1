@@ -6,6 +6,16 @@ public class comando_cliente extends comando{
     private static String[] supportedCommands = {"USER", "PASS", "EXIT","ADDCLUB","GETCLUB"};
     private String comando;
     private comando_servidor Comand_server;
+    private comando_cliente Comand_cliente_opcional;
+
+    public comando_cliente getComand_cliente_opcional() {
+        return Comand_cliente_opcional;
+    }
+
+    public void setComand_cliente_opcional(comando_cliente comand_cliente_opcional) {
+        Comand_cliente_opcional = comand_cliente_opcional;
+    }
+
     public String getComando() {
         return comando;
     }
@@ -30,24 +40,40 @@ public class comando_cliente extends comando{
         Comand_server = comand_server;
     }
 
-    public void ejecutar()
+    public int ejecutar()
     {
         //comprobar validez
         if(this.check()!=(-1))
         {
             if(getComando().equals("USER"))
+            {
                 if((new User().checkear_usuarios(getInformacion_adicional(),null))!=-1)
                 {
                     System.out.println("Comando válido");
                     setComand_server(new comando_servidor(getNumber(),"Envíe contraseña",'O',21));
+                    Comand_server.setUser(getInformacion_adicional());
+                    return 1;
                 }
                 else
-                    setComand_server(new comando_servidor(getNumber(),"Not user",'F',41));
+                    setComand_server(new comando_servidor(getNumber(),"Not user",'F',41));return -1;
+            }
+            if(getComando().equals("PASS"))
+            {
+                if((new User().checkear_usuarios(getComand_cliente_opcional().getInformacion_adicional(),getInformacion_adicional()))!=-1)
+                {
+                    System.out.println("Comando válido");
+                    setComand_server(new comando_servidor(getNumber(),"Welcome "+getComand_cliente_opcional().getInformacion_adicional(),'O',22));
+
+                    return 1;
+                }
+                else
+                    setComand_server(new comando_servidor(getNumber(),"Prueba de nuevo",'F',42));return -1;
+            }
 
         }
-        else
-            System.out.println("Comando no válido");
+        return -1;
 
     }
+
 
 }

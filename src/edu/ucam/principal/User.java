@@ -54,10 +54,13 @@ public class User {
             for(i=0;i<users.size();i++)
                 if(user_id.equals(users.get(i).user_id))
                     check=1;
-        else //caso que pasemso usuario y contraseña
+        if (user_password!=null)//caso que pasemso usuario y contraseña
+        {
             for(i=0;i<users.size();i++)
                 if((user_id.equals(users.get(i).user_id))&&(user_password.equals(users.get(i).user_password)))
                     check=1;
+        }
+
 
         return check;
     }
