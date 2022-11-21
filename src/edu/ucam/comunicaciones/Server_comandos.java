@@ -4,9 +4,11 @@ import edu.ucam.principal.User;
 
 import java.io.*;
 import java.net.*;
+import java.util.ArrayList;
+
 
 public class Server_comandos {
-
+    private static ArrayList<User> User_conectados=new ArrayList<User>();
     public void ejecutar() {
         try {
             ServerSocket serverSocket = new ServerSocket(5000);
@@ -18,6 +20,7 @@ public class Server_comandos {
 
 
                 ServerThread serverThread = new ServerThread(socket);
+
 
                 serverThread.start();
 
@@ -32,6 +35,7 @@ public class Server_comandos {
 
     public static void main(String[] args) {
         User u=new User("admin","admin");
+        User u1=new User("prueba","prueba");
         (new Server_comandos()).ejecutar();
 
     }

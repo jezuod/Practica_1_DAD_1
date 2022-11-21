@@ -46,7 +46,7 @@ public class User {
         users.add(this);
     }
     //por seguridad, vamos a checkear sin mandar nuestra lista de usuarios fuera de la clase
-    public int checkear_usuarios(String user_id,String user_password)
+    public static int checkear_usuarios(String user_id,String user_password)
     {
         int check,i;
         check=-1;

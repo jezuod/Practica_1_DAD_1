@@ -1,16 +1,13 @@
 package edu.ucam.comando;
 
+import edu.ucam.comunicaciones.Client;
+
+import java.util.ArrayList;
+
+
 public class comando_servidor extends comando{
     private Tipos_respuesta tipo_respuesta;
     private String user;
-
-    public String getUser() {
-        return user;
-    }
-
-    public void setUser(String user) {
-        this.user = user;
-    }
 
     private enum Tipos_respuesta{
         OK,
@@ -41,4 +38,5 @@ public class comando_servidor extends comando{
     public int getCod_respuesta() {
         return cod_respuesta;
     }
+
 }
