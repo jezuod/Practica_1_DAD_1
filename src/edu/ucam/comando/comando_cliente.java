@@ -2,10 +2,12 @@ package edu.ucam.comando;
 
 
 import edu.ucam.principal.User;
+import edu.ucam.sesiones.Sesion;
 
 import java.util.ArrayList;
 
 import static edu.ucam.principal.User.checkear_usuarios;
+import static edu.ucam.principal.User.conseguir_user;
 
 
 public class comando_cliente extends comando{
@@ -13,6 +15,15 @@ public class comando_cliente extends comando{
     private String comando;
     private ArrayList<comando_cliente> lista_comandos_introducidos=new ArrayList<comando_cliente>();
     private ArrayList<comando_servidor> lista_comandos_emitidos=new ArrayList<comando_servidor>();
+    private Sesion sesion;
+
+    public Sesion getSesion() {
+        return sesion;
+    }
+
+    public void setSesion(Sesion sesion) {
+        this.sesion = sesion;
+    }
 
     public ArrayList<comando_cliente> getLista_comandos_introducidos() {
         return lista_comandos_introducidos;
@@ -67,6 +78,7 @@ public class comando_cliente extends comando{
 
     public int ejecutar()
     {
+
         //comprobar validez
         try
         {
@@ -97,6 +109,8 @@ public class comando_cliente extends comando{
                     if((checkear_usuarios(usuario_temporal,getInformacion_adicional())==1))
                     {
                         setComand_server(new comando_servidor(getNumber(),"Welcome ",'O',22));
+                        //metemos el usario en la sesion
+                        getSesion().setUser(conseguir_user(usuario_temporal,getInformacion_adicional()));
                         //lo metemos en usuarios conectados
                         //getUser_conectados().add(usuario);
                         return 1;
@@ -106,6 +120,8 @@ public class comando_cliente extends comando{
                 }
                 if(getComando().equals("EXIT")){
                     setComand_server(new comando_servidor(getNumber(),"Bye ",'O',23));
+                    //quitariamos al usuario de la sesión
+                    getSesion().setUser(null);
                     //lo sacamso de usuarios conectados
                        // for(int i=0;i<getUser_conectados().size();i++)
                         {
@@ -117,6 +133,30 @@ public class comando_cliente extends comando{
 
                     return 1;
 
+                }
+                /* comprobar que usuario esta en la sesión despues del exit
+                if(getComando().equals("SESION_USER")){
+                    if(getSesion().getUser()!=null){
+                        setComand_server(new comando_servidor(getNumber(),"Usuario de la sesión : "+getSesion().getUser().getUser_id(),'O',24));
+                    }
+                    else
+                        setComand_server(new comando_servidor(getNumber(),"Usuario de la sesión : "+null,'F',44));
+
+                }
+
+                 */
+                if(getComando().equals("ADDCLUB"))
+                {
+                    //requiere que el usuario este autenticado --> ÚLTIMO COMANDO PASS DEBE DE DAR OK
+                    //PREOK
+                        //OK
+                    //FAILED
+                }
+                if(getComando().equals("GETCLUB")){
+                    //requiere que el usuario este autenticado --> ÚLTIMO COMANDO PASS DEBE DE DAR OK
+                    //PREOK
+                        //OK
+                    //FAILED
                 }
             }
             return -1;

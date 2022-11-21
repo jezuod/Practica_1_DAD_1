@@ -64,6 +64,17 @@ public class User {
 
         return check;
     }
+    public static User conseguir_user(String user_id,String user_password){
+        int i;
+        if (user_password!=null)//caso que pasemso usuario y contraseña
+        {
+            for(i=0;i<users.size();i++)
+                if((user_id.equals(users.get(i).user_id))&&(user_password.equals(users.get(i).user_password)))
+                    return users.get(i);
+        }
+
+    return null;
+    }
 
 
 

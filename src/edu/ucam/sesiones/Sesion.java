@@ -7,6 +7,12 @@ import edu.ucam.principal.User;
 import java.util.ArrayList;
 
 public class Sesion {
+    private static ArrayList<Sesion> Sesiones = new ArrayList<Sesion>();
+
+    public static ArrayList<Sesion> getSesiones() {
+        return Sesiones;
+    }
+
     private int sesion_iniciada;
     private User user;
     private ArrayList<comando_cliente> lista_comandos_introducidos=new ArrayList<comando_cliente>();
@@ -45,6 +51,7 @@ public class Sesion {
     }
 
     public Sesion() {
+        Sesiones.add(this);
         sesion_iniciada=0;
     }
 }

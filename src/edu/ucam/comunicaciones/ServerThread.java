@@ -67,13 +67,14 @@ public class ServerThread extends Thread{
                     //le pasamos la lista de comando ejecutados antes de que el siguiente comando puede necesitarla
                     comand_cliente.setLista_comandos_emitidos(sesion.getLista_comandos_emitidos());
                     comand_cliente.setLista_comandos_introducidos(sesion.getLista_comandos_introducidos());
+                    comand_cliente.setSesion(sesion);
                     comand_cliente.ejecutar();
                     c_server=comand_cliente.getComand_server();
                     //lo almacenamos
                     sesion.getLista_comandos_introducidos().add(comand_cliente);
                     sesion.getLista_comandos_emitidos().add(c_server);
 
-                    pw.println("SERVER : "+c_server.getTipo_respuesta()+" "+c_server.getNumber()+" "+c_server.getCod_respuesta()+" "+c_server.getInformacion_adicional());
+                    pw.println("SERVER : "+c_server.getNumber()+" "+c_server.getTipo_respuesta()+" "+c_server.getCod_respuesta()+" "+c_server.getInformacion_adicional());
 
                 }
                 catch (Exception e)
