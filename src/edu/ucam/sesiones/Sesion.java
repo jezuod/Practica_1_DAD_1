@@ -2,6 +2,7 @@ package edu.ucam.sesiones;
 
 import edu.ucam.comando.comando_cliente;
 import edu.ucam.comando.comando_servidor;
+import edu.ucam.comunicaciones.Client;
 import edu.ucam.principal.User;
 
 import java.util.ArrayList;
@@ -54,4 +55,6 @@ public class Sesion {
         Sesiones.add(this);
         sesion_iniciada=0;
     }
+
+
 }

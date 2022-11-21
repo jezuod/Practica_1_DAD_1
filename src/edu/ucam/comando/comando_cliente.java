@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import static edu.ucam.principal.User.checkear_usuarios;
 import static edu.ucam.principal.User.conseguir_user;
+import static edu.ucam.sesiones.Sesion.getSesiones;
 
 
 public class comando_cliente extends comando{
@@ -111,6 +112,7 @@ public class comando_cliente extends comando{
                         setComand_server(new comando_servidor(getNumber(),"Welcome ",'O',22));
                         //metemos el usario en la sesion
                         getSesion().setUser(conseguir_user(usuario_temporal,getInformacion_adicional()));
+                        getSesion().setSesion_iniciada(1);
                         //lo metemos en usuarios conectados
                         //getUser_conectados().add(usuario);
                         return 1;
@@ -122,6 +124,7 @@ public class comando_cliente extends comando{
                     setComand_server(new comando_servidor(getNumber(),"Bye ",'O',23));
                     //quitariamos al usuario de la sesión
                     getSesion().setUser(null);
+                    getSesion().setSesion_iniciada(0);
                     //lo sacamso de usuarios conectados
                        // for(int i=0;i<getUser_conectados().size();i++)
                         {
@@ -133,6 +136,14 @@ public class comando_cliente extends comando{
 
                     return 1;
 
+                }
+                if(getComando().equals("SESIONES")){
+                    if(getSesion().getSesion_iniciada()==1)
+                    {
+                        setComand_server(new comando_servidor(getNumber(),"Num sesiones abiertas : "+getSesiones().size()+" Bye",'O',24));
+                    }
+                    else
+                        setComand_server(new comando_servidor(getNumber(),"Error Sin sesión inciada",'F',44));
                 }
                 /* comprobar que usuario esta en la sesión despues del exit
                 if(getComando().equals("SESION_USER")){
