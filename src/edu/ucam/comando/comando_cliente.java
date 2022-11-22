@@ -140,7 +140,13 @@ public class comando_cliente extends comando{
                 if(getComando().equals("SESIONES")){
                     if(getSesion().getSesion_iniciada()==1)
                     {
-                        setComand_server(new comando_servidor(getNumber(),"Num sesiones abiertas : "+getSesiones().size()+" Bye",'O',24));
+                        int i=0;
+                        for(int a=0;a<getSesiones().size();a++)
+                        {
+                            if(getSesiones().get(a).getSesion_iniciada()==1)
+                                i++;
+                        }
+                        setComand_server(new comando_servidor(getNumber(),"Num sesiones activas : "+i+" Bye",'O',24));
                     }
                     else
                         setComand_server(new comando_servidor(getNumber(),"Error Sin sesión inciada",'F',44));

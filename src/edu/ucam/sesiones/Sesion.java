@@ -56,5 +56,9 @@ public class Sesion {
         sesion_iniciada=0;
     }
 
+    public static void main(String[] args) {
+        (new Client()).ejecutar();
 
+
+    }
 }
